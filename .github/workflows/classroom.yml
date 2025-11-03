@@ -19,7 +19,7 @@ jobs:
       with:
         test-name: Test7
         setup-command: "/bin/bash ./test7.sh"
-        command: cat ./test/output.txt
+        command: cat ./Test/output.txt
         input: ''
         expected-output: |-
           ----------------------
