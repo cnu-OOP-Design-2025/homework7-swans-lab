@@ -1,0 +1,68 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Test7
+      id: test7
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test7
+        setup-command: "/bin/bash ./test7.sh"
+        command: cat ./test/output.txt
+        input: ''
+        expected-output: |-
+          ----------------------
+          Duck #1:
+          I'm a Mallar Duck.
+          I can Fly!
+          Quack!
+          ----------------------
+          Duck #2:
+          I'm a Redhead Duck.
+          I can Fly!
+          Quack!
+          ----------------------
+          Duck #3:
+          I'm a Rubber Duck.
+          I can't fly...
+          Squeak!
+          ----------------------
+          Duck #4:
+          I'm a Decoy Duck.
+          I can't fly...
+          <<Silent>>
+          ----------------------
+          ModelDuck (version 1)
+          I'm a Decoy Duck.
+          I can't fly...
+          <<Silent>>
+          ----------------------
+          ModelDuck (version 2)
+          I'm a Decoy Duck.
+          I can't fly...
+          Squeak!
+          ----------------------
+          ModelDuck (version 3)
+          I'm a Decoy Duck.
+          I can Fly!
+          Squeak!
+          ----------------------
+        comparison-method: contains
+        timeout: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TEST7_RESULTS: "${{steps.test7.outputs.result}}"
+      with:
+        runners: test7
