@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/AFORVcxa)
   # C++ 클래스 상속 실습 프로젝트
 
 이 프로젝트는 C++의 전략 패턴(Strategy Pattern)을 활용하여 다양한 오리(Duck) 객체의 행동을 동적으로 설정하고 변경하는 실습입니다.
